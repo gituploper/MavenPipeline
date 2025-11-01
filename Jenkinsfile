@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/gituploper/MavenPipeline.git'
+                git branch: 'main', url: 'https://github.com/gituploper/MavenPipeline.git'
                 echo 'Pipeline triggered successfully'
 
             }
