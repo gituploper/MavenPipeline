@@ -10,6 +10,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 git 'https://github.com/gituploper/MavenPipeline.git'
+                echo 'Pipeline triggered successfully'
+
             }
         }
 
