@@ -2,16 +2,15 @@ pipeline {
     agent any
 
     tools {
-        jdk 'JDK25'
         maven 'Maven'
+        jdk 'JDK21'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/gituploper/MavenPipeline.git'
-                echo 'Pipeline triggered successfully'
-
+                echo 'Code checked out successfully.'
             }
         }
 
@@ -35,8 +34,17 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploying build artifact...'
+                echo 'Simulated deployment successful.'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check logs.'
         }
     }
 }
