@@ -1,21 +1,40 @@
 pipeline {
     agent any
+
     tools {
-        maven 'Maven' 
-        jdk 'JDK25'
+        jdk 'JDK21'
+        maven 'Maven'
     }
+
     stages {
         stage('Checkout') {
-            steps { git 'https://github.com/<username>/<repo>.git' }
+            steps {
+                git 'https://github.com/gituploper/MavenPipeline.git'
+            }
         }
+
         stage('Build') {
-            steps { sh 'mvn clean package' }
+            steps {
+                sh 'mvn clean compile'
+            }
         }
+
         stage('Test') {
-            steps { sh 'mvn test' }
+            steps {
+                sh 'mvn test'
+            }
         }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+
         stage('Deploy') {
-            steps { echo 'Deploying build...' }
+            steps {
+                echo 'Deploying build artifact...'
+            }
         }
     }
 }
